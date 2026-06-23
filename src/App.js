@@ -73,7 +73,7 @@ function Friend({ friend }) {
       )}
       {friend.balance > 0 && (
         <p className="green">
-          You owe {friend.name} {Math.abs(friend.balance)} €
+          You owe {friend.name} {Math.abs(friend.balance)}
         </p>
       )}
       {friend.balance === 0 && <p c>You and {friend.name} are even</p>}
@@ -85,10 +85,21 @@ function Friend({ friend }) {
 
 function FormAddFriend() {
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState("https://i.pravatar.cc/48");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const newFriend = {
+      name,
+      image,
+      balance: 0,
+      id: crypto.randomUUID,
+    };
+    console.log(newFriend);
+  }
 
   return (
-    <form className="form-add-friend">
+    <form className="form-add-friend" onSubmit={handleSubmit}>
       <label>👨🏽‍🤝‍👨🏻Friend name</label>
       <input
         type="text"
